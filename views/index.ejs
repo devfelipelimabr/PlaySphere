@@ -5,29 +5,29 @@
     <div class="container">
         <hr>
         <div class="jumbotron">
-            <img id="logo" class="card-img-top" src="/images/blogress.jpg" alt="Logo" style="width: 10rem; max-width: 100%;">
+            <img id="logo" class="card-img-top" src="/images/apiGames.jpg" alt="Logo" style="width: 10rem; max-width: 100%;">
             
-            <h1 class="display-4">Bem-vindo ao Blogress - Seu Portal de Tecnologia!</h1>
-            <p class="lead">Aqui no Blogress, estamos comprometidos em trazer as últimas novidades, tendências e insights em um mundo de constante evolução tecnológica.</p>
+            <h1 class="display-4">Bem-vindo ao API Games - Seu Portal de Tecnologia!</h1>
+            <p class="lead">Aqui no API Games, estamos comprometidos em trazer as últimas novidades, tendências e insights em um mundo de constante evolução tecnológica.</p>
             <hr class="my-4">
             <p>Nosso objetivo é fornecer conteúdo de qualidade e informativo para mantê-lo atualizado sobre os avanços tecnológicos mais recentes.</p>
-            <a class="btn btn-primary btn-lg" href="/about" role="button">Leia mais</a>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
           </div>
         <hr>
-        <% articles.forEach(article =>{ %>
+        <% games.forEach(game =>{ %>
             <div class="card">
                 <div class="card-header">
-                    <h2><%= article.title %></h2>
+                    <h2><%= game.title %></h2>
                 </div>
                 <div class="card-body">
-                    <a href="/articles/<%= article.slug %>" class="btn btn-success">Ler artigo</a>
+                    <a href="/games/<%= game.slug %>" class="btn btn-success">Ler artigo</a>
                 </div>
             </div>
             <br>
             <% }) %>
             <div class="row">
                <div class="col col-12">
-                <a href="/articles/page/2" style="float: right;">Next >>></a>
+                <a href="/games/page/2" style="float: right;">Next >>></a>
                </div>
                 <hr>
             </div>
