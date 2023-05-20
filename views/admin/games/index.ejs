@@ -1,0 +1,64 @@
+<%- include ("../../partials/head.ejs") %> <%- include
+("../../partials/adminNavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <hr />
+    <h2>Games</h2>
+    <a class="btn btn-success" href="/admin/games/new">Cadastrar novo game</a>
+    <hr />
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Imagem</th>
+          <th>Título</th>
+          <th>Ano</th>
+          <th>Preço</th>
+          <th>Slug</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% games.forEach(game =>{ %>
+        <tr>
+          <td><%= game.id %></td>
+          <td><%= game.imageUrl %></td>
+          <td><%= game.title %></td>
+          <td><%= game.year %></td>
+          <td><%= game.price %></td>
+          <td><%= game.slug %></td>
+          <td><%= game.category.title %></td>
+          <td>
+            <a href="/admin/games/edit/<%= game.id %>" class="btn btn-warning"
+              >Editar</a
+            >
+            <form
+              id="deleteGame"
+              method="post"
+              action="/games/delete"
+              style="display: inline"
+              onsubmit="return confirmarDelecao()"
+            >
+              <button class="btn btn-danger" value="<%= game.id %>" name="id">
+                Deletar
+              </button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+<%- include ("../../partials/footer.ejs") %>
+
+<script>
+  function confirmarDelecao() {
+    const decision = confirm(`Tem certeza que deseja deletar o artigo?`);
+
+    return decision;
+  }
+</script>

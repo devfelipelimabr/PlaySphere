@@ -1,0 +1,38 @@
+<%- include ("../../partials/head.ejs") %> <%- include
+("../../partials/homeNavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <hr />
+    <% result.games.rows.forEach(game =>{ %>
+    
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="<%= game.imageUrl %>" alt="Imagem de capa do card">
+        <div class="card-body">
+          <h5 class="card-title"><%= game.title %></h5>          
+          <a href="/games/<%= game.slug %>" class="btn btn-primary">Visitar</a>
+        </div>
+      </div>
+
+    <% }) %>
+    <div class="row">
+      <div class="col col-12">
+        <% if(result.next) { %>
+        <a href="/games/page/<%= (result.page) + 1 %>" style="float: right"
+          >Next >>></a
+        >
+        <% } %> <% if(result.prev && result.page != 2) { %>
+        <a href="/games/page/<%= (result.page) - 1 %>" style="float: left"
+          ><<< Prev</a
+        >
+        <% }else{ %>
+        <a href="/" style="float: left"><<< Prev</a>
+        <% } %>
+      </div>
+      <hr />
+    </div>
+    <hr />
+  </div>
+</body>
+
+<%- include ("../../partials/footer.ejs") %>

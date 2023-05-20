@@ -1,0 +1,29 @@
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="/"> <img id="logo" src="../../images/blogressB.jpg" alt="Logo image" width="30" height="30"> </a>
+  
+      <ul class="navbar-nav mr-auto" style="display: flex; flex-direction: row;">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>      
+        <li class="nav-item">
+          <a class="nav-link" href="/about">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Categorias
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <% categories.forEach(category=>{ %>
+                <a class="dropdown-item" href="/category/<%= category.slug %>"><%= category.title %></a>
+             <% }) %>
+             
+             
+            </div>
+          </div>
+        </li> 
+      </ul>
+    </nav>
+  </header>
+  

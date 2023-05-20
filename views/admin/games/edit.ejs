@@ -1,0 +1,89 @@
+<%- include ("../../partials/head.ejs") %> <%- include
+("../../partials/adminNavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <hr />
+    <div class="card">
+      <div class="card-header">
+        <h2>Edição de game</h2>
+      </div>
+      <div class="card-body">
+        <form action="/games/update" method="post">
+          <input type="hidden" name="id" value="<%= game.id %>" />
+          <input
+            class="form-control"
+            type="text"
+            name="imageUrl"
+            placeholder="Defina a url da imagem do game"
+            value="<%= game.imageUrl %>"
+          />
+          <br />
+          <input
+            class="form-control"
+            type="text"
+            name="title"
+            placeholder="Defina o título do game"
+            value="<%= game.title %>"
+          />
+          <br />
+          <input
+            class="form-control"
+            type="number"
+            name="year"
+            placeholder="Defina o ano de lançamento do game"
+            value="<%= game.year %>"
+          />
+          <br />
+          <input
+            class="form-control"
+            type="number"
+            name="price"
+            placeholder="Defina o preço do game"
+            value="<%= game.price %>"
+          />
+
+          <hr />
+          <label for="category">Categoria</label>
+          <select name="category" class="form-control">
+            <% categories.forEach((category)=>{ %> <% if(category.id ==
+            game.categoryId){%>
+            <option value="<%= category.id %>" selected>
+              <%= category.title %>
+            </option>
+            <% }else{%>
+            <option value="<%= category.id %>"><%= category.title %></option>
+            <% } %> <% }) %>
+          </select>
+          <br />
+          <button class="btn btn-success">Atualizar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+<%- include ("../../partials/footer.ejs") %>
+<!-- 
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: "#game",
+    plugins: [
+      "advlist",
+      "autolink",
+      "link",
+      "image",
+      "lists",
+      "preview",
+      "searchreplace",
+      "wordcount",
+      "fullscreen",
+      "insertdatetime",
+      "media",
+      "save",
+      "table",
+      "emoticons",
+    ],
+  });
+</script> -->

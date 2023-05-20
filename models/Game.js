@@ -16,7 +16,7 @@ const Game = connection.define("games", {
     allowNull: false,
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.FLOAT,
     allowNull: false,
   },
   slug: {
