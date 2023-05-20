@@ -127,7 +127,7 @@ router.post("/auth", (req, res) => {
 
   User.findOne({ where: { email: email } }).then((user) => {
     if (user !== null) {
-      //Verifica se existe este email de usuaro no BD
+      //Verifica se existe este email de usuário no BD
       bcrypt.compare(password, user.password, (err, correct) => {
         if (correct) {
           //Inicia sessão
