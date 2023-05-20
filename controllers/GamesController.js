@@ -6,7 +6,7 @@ const Category = require("../models/Category");
 const adminAuth = require("../midlewares/adminAuth");
 
 router.get("/admin/games", adminAuth, (req, res) => {
-  Article.findAll({
+  Game.findAll({
     include: [{ model: Category }],
   }).then((games) => {
     res.render("admin/games/index", {
@@ -33,7 +33,7 @@ router.post("/games/save", adminAuth, (req, res) => {
   const body = req.body.body;
   const categoryId = req.body.category;
   if (title != undefined && body != undefined) {
-    Article.create({
+    Game.create({
       title: title,
       slug: slugify(title),
       body: body,
@@ -49,7 +49,7 @@ router.post("/games/save", adminAuth, (req, res) => {
 router.post("/games/delete", adminAuth, (req, res) => {
   const id = req.body.id;
   if (id != undefined && id != isNaN) {
-    Article.destroy({
+    Game.destroy({
       where: {
         id: id,
       },
@@ -68,14 +68,14 @@ router.get("/admin/games/edit/:id", adminAuth, (req, res) => {
     return res.redirect("/admin/games");
   }
 
-  Article.findByPk(id)
-    .then((article) => {
-      if (article != undefined) {
+  Game.findByPk(id)
+    .then((game) => {
+      if (game != undefined) {
         Category.findAll({
           order: [["title", "ASC"]],
         }).then((categories) => {
           res.render("admin/games/edit", {
-            article: article,
+            game: game,
             categories: categories,
           });
         });
@@ -90,12 +90,21 @@ router.get("/admin/games/edit/:id", adminAuth, (req, res) => {
 
 router.post("/games/update", adminAuth, (req, res) => {
   const id = req.body.id;
+  const imageUrl = req.body.imageUrl;
   const title = req.body.title;
-  const body = req.body.body;
+  const year = req.body.year;
+  const price = req.body.price;
   const categoryId = req.body.category;
 
-  Article.update(
-    { title: title, slug: slugify(title), body: body, categoryId: categoryId },
+  Game.update(
+    {
+      imageUrl: imageUrl,
+      title: title,
+      slug: slugify(title),
+      year: year,
+      price: price,
+      categoryId: categoryId,
+    },
     {
       where: {
         id: id,
@@ -112,8 +121,8 @@ router.post("/games/update", adminAuth, (req, res) => {
 
 router.get("/games/page/:num", (req, res) => {
   let page = parseInt(req.params.num);
-  const limit = 5; // Número máximo de artigos por página
-  let offset = 0; // Número de "bypass" de artigos
+  const limit = 5; // Número máximo de games por página
+  let offset = 0; // Número de "bypass" de games
 
   if (isNaN(page) || page <= 1) {
     offset = 0;
@@ -122,7 +131,7 @@ router.get("/games/page/:num", (req, res) => {
     offset = (page - 1) * limit;
   }
 
-  Article.findAndCountAll({
+  Game.findAndCountAll({
     limit: limit,
     offset: offset,
     order: [["id", "DESC"]],
