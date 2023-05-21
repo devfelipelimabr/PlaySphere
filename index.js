@@ -10,7 +10,7 @@ const port = 45678;
 app.use(
   session({
     secret: SensitiveData.session.secret,
-    cookie: { maxAge: 100000 }, // Tempo em milissegundos
+    cookie: { maxAge: 10000000 }, // Tempo em milissegundos
   })
 );
 
