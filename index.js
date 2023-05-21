@@ -122,6 +122,15 @@ app.get("/category/:slug", async (req, res) => {
   }
 });
 
+//API
+app.get("/games", (req, res) => {
+  res.statusCode = 200;
+  Game.findAll().then((games)=>{
+    res.send(games)
+    res.statusCode = 200
+  })
+});
+
 app.listen(port, () => {
   console.log(`The server is connected on port - ${port}`);
 });
