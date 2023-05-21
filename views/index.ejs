@@ -14,17 +14,18 @@
             <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
           </div>
         <hr>
+        <div class="card-container">
         <% games.forEach(game =>{ %>
-            <div class="card">
-                <div class="card-header">
-                    <h2><%= game.title %></h2>
-                </div>
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="<%= game.imageUrl %>" alt="Imagem de capa do card">
                 <div class="card-body">
-                    <a href="/games/<%= game.slug %>" class="btn btn-success">Ver detalhes</a>
+                  <h5 class="card-title"><%= game.title %></h5>          
+                  <a href="/games/<%= game.slug %>" class="btn btn-primary">Visitar</a>
                 </div>
-            </div>
+              </div>
             <br>
             <% }) %>
+        </div>
             <div class="row">
                <div class="col col-12">
                 <a href="/games/page/2" style="float: right;">Next >>></a>
