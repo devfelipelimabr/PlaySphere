@@ -29,11 +29,7 @@ router.post("/games/save", adminAuth, (req, res) => {
       '<script>alert("Usuário deslogado"); window.location.href = "/login";</script>'
     );
   }
-  const imageUrl = req.body.imageUrl;
-  const title = req.body.title;
-  const year = req.body.year;
-  const price = req.body.price;
-  const categoryId = req.body.category;
+  const {imageUrl, title, year, price,categoryId} = req.body
   if (
     imageUrl != undefined &&
     title != undefined &&
