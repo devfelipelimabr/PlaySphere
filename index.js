@@ -125,10 +125,28 @@ app.get("/category/:slug", async (req, res) => {
 //API
 app.get("/games", (req, res) => {
   res.statusCode = 200;
-  Game.findAll().then((games)=>{
-    res.send(games)
-    res.statusCode = 200
-  })
+  Game.findAll().then((games) => {
+    res.send(games);
+    res.statusCode = 200;
+  });
+});
+
+app.get("/game/:id", (req, res) => {
+  const id = req.params.id;
+
+  if (isNaN(id)) {
+    res.sendStatus(400);
+  } else {
+    res.statusCode = 200;
+    Game.findByPk(id).then((game) => {
+      if (game != undefined) {
+        res.send(game);
+        res.statusCode = 200;
+      } else {
+        res.sendStatus(404);
+      }
+    });
+  }
 });
 
 app.listen(port, () => {
