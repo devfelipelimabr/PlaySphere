@@ -135,7 +135,9 @@ router.post("/auth", (req, res) => {
             id: user.id,
             email: user.email,
           };
-          res.json(req.session.user);
+          res.send(
+            '<script>alert("Usuário logado com sucesso"); window.location.href = "/admin/games";</script>'
+          );
         } 
       });
     }else {
