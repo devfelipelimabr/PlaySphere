@@ -161,7 +161,7 @@ app.get("/game/:id", (req, res) => {
   }
 });
 
-app.post("/game", (req, res) => {
+app.post("/game", adminAuth, (req, res) => {
   if (req.session.user === undefined) {
     return res.sendStatus(401);
   }
@@ -187,6 +187,21 @@ app.post("/game", (req, res) => {
     res.sendStatus(200);
   } else {
     return res.sendStatus(400);
+  }
+});
+
+app.delete("/game/:id", adminAuth, (req, res) => {
+  const id = req.params.id;
+  if (id != undefined && id != isNaN) {
+    Game.destroy({
+      where: {
+        id: id,
+      },
+    }).then(() => {
+      res.sendStatus(200);
+    });
+  } else {
+    res.sendStatus(400);
   }
 });
 
