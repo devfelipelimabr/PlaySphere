@@ -7,7 +7,7 @@ const session = require("express-session");
 const adminAuth = require("./midlewares/adminAuth");
 const port = 45678;
 
-// Configuração das sessões
+// Configuração das sessões-------------------------------------------------------
 app.use(
   session({
     secret: SensitiveData.session.secret,
@@ -15,28 +15,28 @@ app.use(
   })
 );
 
-// Importação dos controllers
+// Importação dos controllers-------------------------------------------------------
 const categoriesController = require("./controllers/CategoriesController");
 const gamesController = require("./controllers/GamesController");
 const userController = require("./controllers/UserController");
 
-// Importação dos modelos
+// Importação dos modelos-------------------------------------------------------
 const Game = require("./models/Game");
 const Category = require("./models/Category");
 const User = require("./models/User");
 const { default: slugify } = require("slugify");
 
-// Configuração do mecanismo de visualização
+// Configuração do mecanismo de visualização-------------------------------------------------------
 app.set("view engine", "ejs");
 
-// Servir arquivos estáticos
+// Servir arquivos estáticos-------------------------------------------------------
 app.use(express.static("public"));
 
-// Configuração do body-parser
+// Configuração do body-parser-------------------------------------------------------
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Autenticação com o banco de dados
+// Autenticação com o banco de dados-------------------------------------------------------
 connection
   .authenticate()
   .then(() => {
@@ -46,13 +46,12 @@ connection
     console.log(error);
   });
 
-// Uso dos controllers
+// Uso dos controllers-------------------------------------------------------
 app.use("/", categoriesController);
 app.use("/", gamesController);
 app.use("/", userController);
 
-// Rotas
-
+// Rotas-------------------------------------------------------
 app.get("/", async (req, res) => {
   try {
     const games = await Game.findAll({
@@ -124,7 +123,7 @@ app.get("/category/:slug", async (req, res) => {
   }
 });
 
-//API
+//API-------------------------------------------------------
 app.get("/games", (req, res) => {
   res.statusCode = 200;
   Game.findAll({
