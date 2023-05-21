@@ -24,7 +24,7 @@
         <% games.forEach(game =>{ %>
         <tr>
           <td><%= game.id %></td>
-          <td><%= game.imageUrl %></td>
+          <td><img src="<%= game.imageUrl %>" alt="Game image" class="gameImage"></td>
           <td><%= game.title %></td>
           <td><%= game.year %></td>
           <td><%= game.price %></td>

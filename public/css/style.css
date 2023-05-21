@@ -1,3 +1,9 @@
 .container{
     padding-top: 3.7rem !important;
 }
+
+.gameImage{
+width: 7rem;
+height: 5,25rem;
+max-width: 100%;
+}

@@ -29,14 +29,24 @@ router.post("/games/save", adminAuth, (req, res) => {
       '<script>alert("Usuário deslogado"); window.location.href = "/login";</script>'
     );
   }
+  const imageUrl = req.body.imageUrl;
   const title = req.body.title;
-  const body = req.body.body;
+  const year = req.body.year;
+  const price = req.body.price;
   const categoryId = req.body.category;
-  if (title != undefined && body != undefined) {
+  if (
+    imageUrl != undefined &&
+    title != undefined &&
+    year != undefined &&
+    price != undefined &&
+    categoryId != undefined
+  ) {
     Game.create({
+      imageUrl: imageUrl,
       title: title,
       slug: slugify(title),
-      body: body,
+      year: year,
+      price: price,
       categoryId: categoryId,
     }).then(() => {
       res.redirect("/admin/games");

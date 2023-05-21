@@ -1,0 +1,23 @@
+<%- include ("./partials/head.ejs") %> <%- include
+("./partials/homeNavbar.ejs") %>
+
+<body>
+  <div class="container">
+    <hr />
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="<%= game.imageUrl %>" alt="Imagem de capa do card">
+      <div class="card-body">
+        <h5 class="card-title"><%= game.title %></h5>       
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Ano de lançamento: <%= game.year %></li>
+        <li class="list-group-item">Preço: R$<%= game.price %></li>
+        
+      </ul>
+      
+    </div>
+  </div>
+</body>
+
+<%- include ("./partials/footer.ejs") %>
