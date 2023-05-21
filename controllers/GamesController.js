@@ -29,18 +29,20 @@ router.post("/games/save", adminAuth, (req, res) => {
       '<script>alert("Usuário deslogado"); window.location.href = "/login";</script>'
     );
   }
-  const {imageUrl, title, year, price,categoryId} = req.body
+  const { imageUrl, title, year, price, categoryId } = req.body;
+  const slug = slugify(title);
   if (
     imageUrl != undefined &&
     title != undefined &&
     year != undefined &&
     price != undefined &&
-    categoryId != undefined
+    categoryId != undefined &&
+    slug != undefined
   ) {
     Game.create({
       imageUrl: imageUrl,
       title: title,
-      slug: slugify(title),
+      slug: slug,
       year: year,
       price: price,
       categoryId: categoryId,

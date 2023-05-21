@@ -125,11 +125,16 @@ router.post("/auth", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  if(email == undefined || password ==undefined){
+    return res.sendStatus(400)
+  }
+
   User.findOne({ where: { email: email } }).then((user) => {
     if (user !== null) {
       //Verifica se existe este email de usuário no BD
       bcrypt.compare(password, user.password, (err, correct) => {
         if (correct) {
+          res.statusCode = 200
           //Inicia sessão
           req.session.user = {
             id: user.id,
