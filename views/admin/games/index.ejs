@@ -5,7 +5,7 @@
   <div class="container">
     <hr />
     <h2>Games</h2>
-    <a class="btn btn-success" href="/admin/games/new">Cadastrar novo game</a>
+    <a class="btn btn-success" href="/admin/game/new">Cadastrar novo game</a>
     <hr />
     <table class="table table-bordered">
       <thead>
@@ -31,13 +31,13 @@
           <td><%= game.slug %></td>
           <td><%= game.category.title %></td>
           <td>
-            <a href="/admin/games/edit/<%= game.id %>" class="btn btn-warning"
+            <a href="/admin/game/edit/<%= game.id %>" class="btn btn-warning"
               >Editar</a
             >
             <form
               id="deleteGame"
               method="post"
-              action="/games/delete"
+              action="/game/delete"
               style="display: inline"
               onsubmit="return confirmarDelecao()"
             >

@@ -25,14 +25,14 @@
           <td><%= user.email %></td>
           <td>
             <a
-              href="/admin/users/edit/<%= user.id %>"
+              href="/admin/user/edit/<%= user.id %>"
               class="btn btn-warning"
               >Editar</a
             >
             <form
               id="deleteCategoy"
               method="post"
-              action="/users/delete"
+              action="/user/delete"
               style="display: inline"
               onsubmit="return confirmarDelecao()"
             >

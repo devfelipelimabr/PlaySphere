@@ -15,7 +15,7 @@ router.get("/admin/games", adminAuth, (req, res) => {
   });
 });
 
-router.get("/admin/games/new", adminAuth, (req, res) => {
+router.get("/admin/game/new", adminAuth, (req, res) => {
   Category.findAll({
     order: [["title", "ASC"]],
   }).then((categories) => {
@@ -23,7 +23,7 @@ router.get("/admin/games/new", adminAuth, (req, res) => {
   });
 });
 
-router.post("/games/save", adminAuth, (req, res) => {
+router.post("/game/save", adminAuth, (req, res) => {
   if (req.session.user === undefined) {
     return res.send(
       '<script>alert("Usuário deslogado"); window.location.href = "/login";</script>'
@@ -31,14 +31,7 @@ router.post("/games/save", adminAuth, (req, res) => {
   }
   const { imageUrl, title, year, price, categoryId } = req.body;
   const slug = slugify(title);
-  if (
-    imageUrl != undefined &&
-    title != undefined &&
-    year != undefined &&
-    price != undefined &&
-    categoryId != undefined &&
-    slug != undefined
-  ) {
+  if (imageUrl && title && year && price && categoryId && slug) {
     Game.create({
       imageUrl: imageUrl,
       title: title,
@@ -50,11 +43,11 @@ router.post("/games/save", adminAuth, (req, res) => {
       res.redirect("/admin/games");
     });
   } else {
-    res.redirect("admin/games/new");
+    res.redirect("/admin/games");
   }
 });
 
-router.post("/games/delete", adminAuth, (req, res) => {
+router.post("/game/delete", adminAuth, (req, res) => {
   const id = req.body.id;
   if (id != undefined && id != isNaN) {
     Game.destroy({
@@ -69,7 +62,7 @@ router.post("/games/delete", adminAuth, (req, res) => {
   }
 });
 
-router.get("/admin/games/edit/:id", adminAuth, (req, res) => {
+router.get("/admin/game/edit/:id", adminAuth, (req, res) => {
   const id = req.params.id;
 
   if (isNaN(id)) {
@@ -96,7 +89,7 @@ router.get("/admin/games/edit/:id", adminAuth, (req, res) => {
     });
 });
 
-router.post("/games/update", adminAuth, (req, res) => {
+router.post("/game/update", adminAuth, (req, res) => {
   const id = req.body.id;
   const imageUrl = req.body.imageUrl;
   const title = req.body.title;

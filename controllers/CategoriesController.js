@@ -4,11 +4,11 @@ const router = express.Router();
 const Category = require("../models/Category");
 const adminAuth = require("../midlewares/adminAuth");
 
-router.get("/admin/categories/new", adminAuth, (req, res) => {
+router.get("/admin/category/new", adminAuth, (req, res) => {
   res.render("admin/categories/new");
 });
 
-router.post("/categories/save", adminAuth, (req, res) => {
+router.post("/category/save", adminAuth, (req, res) => {
   const title = req.body.title;
 
   if (title && title.trim() !== "") {
@@ -23,10 +23,10 @@ router.post("/categories/save", adminAuth, (req, res) => {
       .catch((error) => {
         // Lida com erros na criação da categoria
         console.error("Erro ao criar categoria: ", error);
-        res.redirect("/admin/categories/new");
+        res.redirect("/admin/category/new");
       });
   } else {
-    res.redirect("/admin/categories/new");
+    res.redirect("/admin/category/new");
   }
 });
 
@@ -38,7 +38,7 @@ router.get("/admin/categories", adminAuth, (req, res) => {
   });
 });
 
-router.post("/categories/delete", adminAuth, (req, res) => {
+router.post("/category/delete", adminAuth, (req, res) => {
   const id = req.body.id;
   if (id != undefined && id != isNaN) {
     Category.destroy({
@@ -53,7 +53,7 @@ router.post("/categories/delete", adminAuth, (req, res) => {
   }
 });
 
-router.get("/admin/categories/edit/:id", adminAuth, (req, res) => {
+router.get("/admin/category/edit/:id", adminAuth, (req, res) => {
   const id = req.params.id;
 
   if (isNaN(id)) {
@@ -73,7 +73,7 @@ router.get("/admin/categories/edit/:id", adminAuth, (req, res) => {
     });
 });
 
-router.post("/categories/update", adminAuth, (req, res) => {
+router.post("/category/update", adminAuth, (req, res) => {
   const id = req.body.id;
   const title = req.body.title;
 

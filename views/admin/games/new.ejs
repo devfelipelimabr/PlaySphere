@@ -9,7 +9,7 @@
         <h2>Novo game</h2>
       </div>
       <div class="card-body">
-        <form action="/games/save" method="post">
+        <form action="/game/save" method="post">
           <input
             class="form-control"
             type="text"
@@ -41,7 +41,7 @@
 
           <hr />
           <label for="category">Categoria</label>
-          <select name="category" class="form-control">
+          <select name="categoryId" class="form-control">
             <% categories.forEach((category)=>{ %>
             <option value="<%= category.id %>"><%= category.title %></option>
             <% }) %>
