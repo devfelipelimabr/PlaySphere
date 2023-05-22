@@ -154,7 +154,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
   req.session.user = undefined;
   res.sendStatus(200);
 });
