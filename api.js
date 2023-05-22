@@ -25,6 +25,12 @@ const User = require("./models/User");
 api.use(bodyParser.urlencoded({ extended: false }));
 api.use(bodyParser.json());
 
+// Importação dos controllers-------------------------------------------------------
+const userController = require("./controllers/UserController");
+
+// Uso dos controllers-------------------------------------------------------
+api.use("/", userController);
+
 
 // Autenticação com o banco de dados-------------------------------------------------------
 connection
