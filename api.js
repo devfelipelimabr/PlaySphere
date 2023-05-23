@@ -6,7 +6,11 @@ const connection = require("./database/database");
 const session = require("express-session");
 const adminAuth = require("./midlewares/adminAuth");
 const { default: slugify } = require("slugify");
+const cors = require("cors")
 const port = 5678;
+
+//Definição de cors-------------------------------------------------------
+api.use(cors());
 
 // Configuração das sessões-------------------------------------------------------
 api.use(
@@ -103,7 +107,7 @@ api.get("/games", (req, res) => {
       });
       res.sendStatus(200);
     } else {
-      return res.sendStatus(400);
+      res.sendStatus(400);
     }
   });
   
